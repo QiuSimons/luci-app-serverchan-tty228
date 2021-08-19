@@ -960,7 +960,7 @@ function send(){
 
 	[ ! -z "$router_temp" ] && [ "$router_temp" -eq "1" ] && local cputemp=`soc_temp`
 	[ ! -z "$cputemp" ] && local send_content="${send_content}${str_splitline}${str_title_start} 设备温度${str_title_end}${str_linefeed}${str_tab}CPU：${cputemp}${str_celsius}"
-	[ -z "$cputemp" ] && local send_content="${send_content}${str_splitline}${str_title_start} 设备温度${str_title_end}${str_linefeed}${str_tab}无法获取设备温度"
+	[ ! -z "$router_temp" ] && [ "$router_temp" -eq "1" ] && [ -z "$cputemp" ] && local send_content="${send_content}${str_splitline}${str_title_start} 设备温度${str_title_end}${str_linefeed}${str_tab}无法获取设备温度"
 
 	if [ ! -z "$router_wan" ] && [ "$router_wan" -eq "1" ]; then
 		local send_wanIP=`getip wanipv4`;local send_hostIP=`getip hostipv4`
